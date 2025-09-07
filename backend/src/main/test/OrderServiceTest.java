@@ -193,7 +193,7 @@ class OrderServiceTest {
 
         assertNotNull(response.getId());
         assertEquals(BigDecimal.valueOf(37.80).setScale(2), response.getTotal());
-        assertEquals(3, product.getStock()); // 5 - 2
+        assertEquals(3, product.getStock());
         verify(orderRepository).save(any(Order.class));
     }
 }

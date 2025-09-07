@@ -6,6 +6,7 @@ import application.entity.OrderItem;
 import application.entity.Product;
 import application.repository.OrderRepository;
 import application.repository.ProductRepository;
+import application.exception.InsufficientStockException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -107,19 +108,6 @@ public class OrderService {
             order.getTotal(),
             itemDTOs
         );
-    }
-
-    public static class InsufficientStockException extends RuntimeException {
-        private final List<StockErrorDTO> stockErrors;
-
-        public InsufficientStockException(List<StockErrorDTO> stockErrors) {
-            super("Estoque insuficiente");
-            this.stockErrors = stockErrors;
-        }
-
-        public List<StockErrorDTO> getStockErrors() {
-            return stockErrors;
-        }
     }
 }
 

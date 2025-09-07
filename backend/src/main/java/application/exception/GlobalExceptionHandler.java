@@ -41,6 +41,15 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
     }
 
+    @ExceptionHandler(InsufficientStockException.class)
+    public ResponseEntity<?> handleInsufficientStock(InsufficientStockException ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("error", "Conflict");
+        body.put("message", ex.getMessage());
+        body.put("details", ex.getStockErrors());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleGeneric(Exception ex) {
         Map<String, Object> body = new HashMap<>();
